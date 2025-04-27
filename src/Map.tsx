@@ -1,33 +1,37 @@
 import { geoAlbersUsa, geoPath, select } from 'd3'
+import { FeatureCollection } from 'geojson'
 import { useEffect, useRef, useState } from 'react'
 import { feature } from 'topojson-client'
+import { Topology } from 'topojson-specification'
 
-const WIDTH = 660
-const HEIGHT = 660
+const WIDTH = 800
+const HEIGHT = 600
 
 export default function Map() {
     const ref = useRef<SVGSVGElement>(null)
-    const [states, setStates] = useState<any[]>([])
+    const [geoJson, setGeoJson] = useState<FeatureCollection>()
 
     useEffect(() => {
         fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
             .then((res) => res.json())
-            .then((us) => {
-                const geojson = feature(us, us.objects.states)
-                console.log('🚀 ~ .then ~ geojson:', geojson)
-                setStates(geojson.features)
+            .then((topology: Topology) => {
+                const gj = feature(topology, topology.objects.states)
+                if (gj.type === 'FeatureCollection') {
+                    setGeoJson(gj)
+                }
             })
     }, [])
 
     useEffect(() => {
-        if (states.length > 0) {
+        if (!geoJson) {
+            return
         }
         const svg = select(ref.current)
         svg.selectAll('*').remove()
-        const projection = geoAlbersUsa().fitSize([WIDTH, HEIGHT], { type: 'FeatureCollection', features: states })
+        const projection = geoAlbersUsa().fitSize([WIDTH, HEIGHT], geoJson)
         const path = geoPath(projection)
         svg.selectAll('path')
-            .data(states)
+            .data(geoJson.features)
             .enter()
             .append('path')
             .attr('d', path as any)
@@ -36,7 +40,7 @@ export default function Map() {
             .on('click', (event, d) => {
                 // Placeholder for click handler
             })
-    }, [states])
+    }, [geoJson])
 
-    return <svg ref={ref} width={WIDTH} height={HEIGHT} />
+    return <svg ref={ref} width="100%" height="100%" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ display: 'block', width: '100%', height: '100%' }} />
 }
