@@ -40,5 +40,5 @@ export default function Map() {
             .attr('stroke-width', 0.5)
     }, [geoJson])
 
-    return <svg className="size-full bg-amber-50" ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} />
+    return <svg className="size-full" ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} />
 }
