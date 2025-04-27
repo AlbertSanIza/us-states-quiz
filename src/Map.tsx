@@ -5,7 +5,7 @@ import { feature } from 'topojson-client'
 import { Topology } from 'topojson-specification'
 
 const WIDTH = 1000
-const HEIGHT = 1000
+const HEIGHT = 500
 
 export default function Map() {
     const ref = useRef<SVGSVGElement>(null)
