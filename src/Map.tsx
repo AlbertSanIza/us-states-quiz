@@ -40,7 +40,11 @@ export default function Map() {
             .join('path')
             .attr('d', path)
             .attr('fill', (data) =>
-                answeredStates[data.properties?.name] === 'correct' ? 'green' : answeredStates[data.properties?.name] === 'incorrect' ? 'red' : 'black'
+                answeredStates[data.properties?.name] === 'correct'
+                    ? 'oklch(62.7% 0.194 149.214)' // Green
+                    : answeredStates[data.properties?.name] === 'incorrect'
+                      ? 'oklch(57.7% 0.245 27.325)' // Red
+                      : 'black'
             )
             .attr('stroke', 'white')
             .attr('stroke-width', 0.5)
