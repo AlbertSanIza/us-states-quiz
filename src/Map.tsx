@@ -12,7 +12,7 @@ const HEIGHT = 500
 export default function Map() {
     const ref = useRef<SVGSVGElement>(null)
     const [geoJson, setGeoJson] = useState<FeatureCollection>()
-    const { started, finished, answeredStates, answerState, setStates } = useGameStore()
+    const { started, finished, answered, answerState, setStates } = useGameStore()
 
     useEffect(() => {
         fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
@@ -40,27 +40,27 @@ export default function Map() {
             .join('path')
             .attr('d', path)
             .attr('fill', (data) =>
-                answeredStates[data.properties?.name] === 'correct'
+                answered[data.properties?.name] === 'correct'
                     ? 'oklch(72.3% 0.219 149.579)' // Green
-                    : answeredStates[data.properties?.name] === 'incorrect'
+                    : answered[data.properties?.name] === 'incorrect'
                       ? 'oklch(57.7% 0.245 27.325)' // Red
                       : 'black'
             )
             .attr('stroke', 'white')
             .attr('stroke-width', 0.5)
-            .style('cursor', (data) => (started && !finished && !answeredStates[data.properties?.name] ? 'pointer' : 'default'))
-            .on('click', (_, data) => !answeredStates[data.properties?.name] && answerState(data.properties?.name))
+            .style('cursor', (data) => (started && !finished && !answered[data.properties?.name] ? 'pointer' : 'default'))
+            .on('click', (_, data) => !answered[data.properties?.name] && answerState(data.properties?.name))
             .on('mouseover', function (_, data) {
-                if (started && !finished && !answeredStates[data.properties?.name]) {
+                if (started && !finished && !answered[data.properties?.name]) {
                     select(this).attr('fill', 'oklch(27.8% 0.033 256.848)') // Gray
                 }
             })
             .on('mouseout', function (_, data) {
-                if (started && !finished && !answeredStates[data.properties?.name]) {
+                if (started && !finished && !answered[data.properties?.name]) {
                     select(this).attr('fill', 'black')
                 }
             })
-    }, [geoJson, started, finished, answeredStates, answerState])
+    }, [geoJson, started, finished, answered, answerState])
 
     return <svg className="size-full" ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} />
 }
