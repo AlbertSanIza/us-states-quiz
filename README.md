@@ -11,3 +11,4 @@ https://albertsaniza.github.io/us-states-quiz
 - Vite
 - Tailwind
 - d3
+- Zustand
