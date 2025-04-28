@@ -5,7 +5,8 @@ import { useGameStore } from './lib/store'
 import { formatTime } from './lib/utils'
 
 export default function App() {
-    const { started, finished, timer, score, currentState, tick, startGame, resetGame } = useGameStore()
+    const { started, finished, answered, timer, currentState, tick, startGame, resetGame } = useGameStore()
+    const answeredCount = Object.values(answered).length
 
     useEffect(() => {
         if (!started || finished) {
@@ -20,10 +21,12 @@ export default function App() {
             <div className="flex items-center justify-between gap-6">
                 <div>
                     <h1 className="text-6xl font-bold tracking-tight">US States Quiz</h1>
-                    <div className="h-7 text-lg font-semibold">
+                    <div className="h-7 font-mono text-lg font-semibold">
                         {started && (
                             <>
-                                Found: {score}/50, Remaining: 50, Time: <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
+                                Found: {answeredCount < 10 && <span className="opacity-0">0</span>}
+                                {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining: {50 - answeredCount}, Time:{' '}
+                                <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
                                 {finished && <span className="font-bold text-green-700">Game Over!</span>}
                             </>
                         )}
