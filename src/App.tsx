@@ -5,7 +5,7 @@ import { useGameStore } from './lib/store'
 import { formatTime } from './lib/utils'
 
 export default function App() {
-    const { started, finished, answered, timer, currentState, tick, startGame, resetGame } = useGameStore()
+    const { started, finished, answered, timer, current, tick, startGame, resetGame } = useGameStore()
     const answeredCount = Object.values(answered).length
 
     useEffect(() => {
@@ -53,9 +53,9 @@ export default function App() {
                 </div>
             </div>
             <div className="relative flex-1 overflow-hidden">
-                {started && !finished && currentState && (
+                {started && !finished && current && (
                     <div className="absolute w-full text-center text-2xl font-semibold tracking-tight">
-                        Find: <span className="text-4xl underline">{currentState}</span>
+                        Find: <span className="text-4xl underline">{current}</span>
                     </div>
                 )}
                 <Map />
