@@ -38,27 +38,25 @@ export default function Map() {
             .data(geoJson.features)
             .join('path')
             .attr('d', path)
-            .attr(
-                'fill',
-                (data) =>
+            .attr('fill', (data) =>
                     answered[data.properties?.name] === 'correct'
                         ? 'oklch(84.1% 0.238 128.85)' // Green
                         : answered[data.properties?.name] === 'incorrect'
-                          ? 'oklch(57.7% 0.245 27.325)' // Red
-                          : 'oklch(96.7% 0.001 286.375)' // Zinc 100
+                      ? 'oklch(63.7% 0.237 25.331)' // Red
+                      : 'black'
             )
-            .attr('stroke', 'black')
+            .attr('stroke', 'oklch(37% 0.013 285.805)')
             .attr('stroke-width', 1)
             .style('cursor', (data) => (started && !finished && !answered[data.properties?.name] ? 'pointer' : 'default'))
             .on('click', (_, data) => !answered[data.properties?.name] && answer(data.properties?.name))
             .on('mouseover', function (_, data) {
                 if (started && !finished && !answered[data.properties?.name]) {
-                    select(this).attr('fill', 'black')
+                    select(this).attr('fill', 'oklch(37% 0.013 285.805)')
                 }
             })
             .on('mouseout', function (_, data) {
                 if (started && !finished && !answered[data.properties?.name]) {
-                    select(this).attr('fill', 'oklch(96.7% 0.001 286.375)') // Zinc 100
+                    select(this).attr('fill', 'black')
                 }
             })
     }, [geoJson, started, finished, answered, answer])
