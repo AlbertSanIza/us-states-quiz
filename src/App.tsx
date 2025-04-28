@@ -37,14 +37,14 @@ export default function App() {
                 <div>
                     {!started ? (
                         <button
-                            className="flex h-10 w-18 items-center justify-center rounded-lg bg-black font-light text-white hover:cursor-pointer hover:opacity-80"
+                            className="flex h-10 w-18 items-center justify-center rounded-lg bg-black text-white hover:cursor-pointer hover:opacity-80"
                             onClick={startGame}
                         >
                             Start
                         </button>
                     ) : (
                         <button
-                            className="flex h-10 w-18 items-center justify-center rounded-lg border-2 font-light hover:cursor-pointer hover:underline hover:opacity-80"
+                            className="flex h-10 w-18 items-center justify-center rounded-lg border-2 hover:cursor-pointer hover:underline hover:opacity-80"
                             onClick={resetGame}
                         >
                             Reset
