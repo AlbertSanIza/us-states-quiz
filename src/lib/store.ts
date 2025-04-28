@@ -67,23 +67,17 @@ export const useGameStore = create<{
     startGame: () => void
     resetGame: () => void
     answer: (state: string) => void
-    timer: number // seconds left
-    tick: () => void
 }>((set, get) => ({
     started: false,
     finished: false,
     current: null,
     answered: {},
-    timer: 300,
-
     startGame: () => {
         set({ started: true, finished: false, current: getRandomState(US_STATES), answered: {} })
     },
-
     resetGame: () => {
         set({ started: false, finished: false, current: null, answered: {} })
     },
-
     answer: (state: string) => {
         const { current, answered } = get()
         if (!current || answered[current]) {
@@ -100,14 +94,5 @@ export const useGameStore = create<{
         }
         const remaining = US_STATES.filter((s) => !newAnswered[s])
         set({ answered: newAnswered, current: remaining.length > 0 ? getRandomState(remaining) : null, finished: remaining.length === 0 })
-    },
-
-    tick: () => {
-        const { timer, finished, started } = get()
-        if (!started || finished) return
-        if (timer > 0) {
-            set({ timer: timer - 1 })
-            if (timer - 1 === 0) set({ finished: true })
-        }
     }
 }))
