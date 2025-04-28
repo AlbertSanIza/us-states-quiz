@@ -20,12 +20,13 @@ export default function App() {
             <div className="flex items-center justify-between gap-6">
                 <div>
                     <h1 className="text-6xl font-bold tracking-tight">US States Quiz</h1>
-                    <div className="h-7 text-sm">
-                        <span className="font-mono text-lg">
-                            Time: <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
-                        </span>{' '}
-                        <span className="font-mono text-lg">Score: {score}/50</span>
-                        {finished && <span className="ml-4 text-xl font-bold text-green-700">Game Over!</span>}
+                    <div className="h-7 text-lg font-semibold">
+                        {started && (
+                            <>
+                                Found: {score}/50, Remaining: 50, Time: <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
+                                {finished && <span className="font-bold text-green-700">Game Over!</span>}
+                            </>
+                        )}
                     </div>
                 </div>
                 <div>
