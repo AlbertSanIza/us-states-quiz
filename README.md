@@ -4,7 +4,7 @@
 
 https://albertsaniza.github.io/us-states-quiz
 
-![US States Quiz](https://github.com/user-attachments/assets/b1f358c6-c5d9-496b-808b-8ada34b69954)
+![US States Quiz](https://github.com/user-attachments/assets/d05439cc-0078-451a-8b36-614e045ee504)
 
 ## Core Technologies
 
