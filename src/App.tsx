@@ -12,7 +12,7 @@ export default function App() {
                 <div>
                     <h1 className="text-6xl font-bold tracking-tight">US States Quiz</h1>
                     <div className="h-7 font-mono text-lg font-semibold">
-                        {started && (
+                        {started && !finished && (
                             <>
                                 Found: {answeredCount < 10 && <span className="opacity-0">0</span>}
                                 {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining:{' '}
@@ -48,6 +48,19 @@ export default function App() {
                 )}
                 <Map />
             </div>
+            {finished && (
+                <div className="fixed inset-0 flex items-center justify-center bg-zinc-950/80 text-white">
+                    <div className="flex flex-col items-start gap-4 rounded-lg p-6">
+                        <h2 className="f text-4xl font-semibold">Results:</h2>
+                        <div className="text-6xl font-bold">
+                            Found: {Object.values(answered).filter((value) => value === 'correct').length}/50, Time: <ElapsedTime />
+                        </div>
+                        <button className="hover:cursor-pointer hover:underline" onClick={resetGame}>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            )}
         </main>
     )
 }
