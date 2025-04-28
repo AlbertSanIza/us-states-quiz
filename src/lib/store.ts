@@ -80,18 +80,8 @@ export const useGameStore = create<{
     },
     answer: (state: string) => {
         const { current, answered } = get()
-        if (!current || answered[current]) {
-            return
-        }
-        let status: AnswerStatus = 'incorrect'
         let newAnswered = { ...answered }
-        if (state === current) {
-            status = 'correct'
-            newAnswered[state] = status
-        } else {
-            // Mark the actual state-to-find as incorrect
-            newAnswered[current] = 'incorrect'
-        }
+        newAnswered[state] = state === current ? 'correct' : 'incorrect'
         const remaining = US_STATES.filter((s) => !newAnswered[s])
         set({ answered: newAnswered, current: remaining.length > 0 ? getRandomState(remaining) : null, finished: remaining.length === 0 })
     }

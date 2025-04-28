@@ -42,7 +42,7 @@ export default function Map() {
                 'fill',
                 (data) =>
                     answered[data.properties?.name] === 'correct'
-                        ? 'oklch(72.3% 0.219 149.579)' // Green
+                        ? 'oklch(84.1% 0.238 128.85)' // Green
                         : answered[data.properties?.name] === 'incorrect'
                           ? 'oklch(57.7% 0.245 27.325)' // Red
                           : 'oklch(96.7% 0.001 286.375)' // Zinc 100
