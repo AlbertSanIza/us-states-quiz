@@ -12,7 +12,7 @@ const HEIGHT = 500
 export default function Map() {
     const ref = useRef<SVGSVGElement>(null)
     const [geoJson, setGeoJson] = useState<FeatureCollection>()
-    const { started, finished, answered, answer, setStates } = useGameStore()
+    const { started, finished, answered, answer } = useGameStore()
 
     useEffect(() => {
         fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
@@ -21,7 +21,6 @@ export default function Map() {
                 const gj = feature(topology, topology.objects.states)
                 if (gj.type === 'FeatureCollection') {
                     setGeoJson(gj)
-                    setStates(gj.features.map((feature) => feature.properties?.name || '').filter(Boolean))
                 }
             })
     }, [])
