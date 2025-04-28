@@ -25,7 +25,9 @@ export default function App() {
                         {started && (
                             <>
                                 Found: {answeredCount < 10 && <span className="opacity-0">0</span>}
-                                {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining: {50 - answeredCount}, Time:{' '}
+                                {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining:{' '}
+                                {50 - answeredCount < 10 && <span className="opacity-0">0</span>}
+                                {50 - answeredCount}, Time:
                                 <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
                                 {finished && <span className="font-bold text-green-700">Game Over!</span>}
                             </>
