@@ -1,20 +1,10 @@
-import { useEffect } from 'react'
-
 import Map from './Map'
 import { useGameStore } from './lib/store'
 import { formatTime } from './lib/utils'
 
 export default function App() {
-    const { started, finished, answered, timer, current, tick, startGame, resetGame } = useGameStore()
+    const { started, finished, current, answered, startGame, resetGame } = useGameStore()
     const answeredCount = Object.values(answered).length
-
-    useEffect(() => {
-        if (!started || finished) {
-            return
-        }
-        const id = setInterval(() => tick(), 1000)
-        return () => clearInterval(id)
-    }, [started, finished, tick])
 
     return (
         <main className="absolute inset-0 flex flex-col gap-6 p-6 select-none">
@@ -27,7 +17,7 @@ export default function App() {
                                 Found: {answeredCount < 10 && <span className="opacity-0">0</span>}
                                 {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining:{' '}
                                 {50 - answeredCount < 10 && <span className="opacity-0">0</span>}
-                                {50 - answeredCount}, Time: <span className={timer <= 10 ? 'text-red-600' : ''}>{formatTime(timer)}</span>
+                                {50 - answeredCount}, Time: {formatTime(10)}
                                 {finished && <span className="font-bold text-green-700">Game Over!</span>}
                             </>
                         )}
