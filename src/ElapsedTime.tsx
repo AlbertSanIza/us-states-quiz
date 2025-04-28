@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGameStore } from './lib/store'
 import { formatTime } from './lib/utils'
 
 export default function ElapsedTime() {
-    const { started, finished } = useGameStore()
-    const [elapsed, setElapsed] = useState(0)
+    const { started, finished, elapsedTime, updateElapsedTime } = useGameStore()
     const startTimeRef = useRef<number | null>(null)
     const intervalRef = useRef<number | null>(null)
 
@@ -15,7 +14,7 @@ export default function ElapsedTime() {
             }
             intervalRef.current = window.setInterval(() => {
                 if (startTimeRef.current) {
-                    setElapsed(Math.floor((Date.now() - startTimeRef.current) / 1000))
+                    updateElapsedTime(Math.floor((Date.now() - startTimeRef.current) / 1000))
                 }
             }, 200)
         } else {
@@ -24,7 +23,7 @@ export default function ElapsedTime() {
                 intervalRef.current = null
             }
             if (!started) {
-                setElapsed(0)
+                updateElapsedTime(0)
                 startTimeRef.current = null
             }
         }
@@ -37,5 +36,5 @@ export default function ElapsedTime() {
         }
     }, [started, finished])
 
-    return <span>{formatTime(elapsed)}</span>
+    return <span>{formatTime(elapsedTime)}</span>
 }

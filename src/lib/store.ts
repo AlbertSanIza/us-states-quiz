@@ -64,14 +64,17 @@ export const useGameStore = create<{
     finished: boolean
     current: string | null
     answered: Record<string, AnswerStatus>
+    elapsedTime: number
     startGame: () => void
     resetGame: () => void
     answer: (state: string) => void
+    updateElapsedTime: (time: number) => void
 }>((set, get) => ({
     started: false,
     finished: false,
     current: null,
     answered: {},
+    elapsedTime: 0,
     startGame: () => {
         set({ started: true, finished: false, current: getRandomState(US_STATES), answered: {} })
     },
@@ -87,5 +90,8 @@ export const useGameStore = create<{
         newAnswered[current] = state === current ? 'correct' : 'incorrect'
         const remaining = US_STATES.filter((s) => !newAnswered[s])
         set({ answered: newAnswered, current: remaining.length > 0 ? getRandomState(remaining) : null, finished: remaining.length === 0 })
+    },
+    updateElapsedTime: (time: number) => {
+        set({ elapsedTime: time })
     }
 }))
