@@ -17,7 +17,7 @@ export default function App() {
     }, [started, finished, tick])
 
     return (
-        <main className="absolute inset-0 flex flex-col gap-6 p-6">
+        <main className="absolute inset-0 flex flex-col gap-6 p-6 select-none">
             <div className="flex items-center justify-between gap-6">
                 <div>
                     <h1 className="text-6xl font-bold tracking-tight">US States Quiz</h1>
