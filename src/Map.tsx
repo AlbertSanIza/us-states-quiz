@@ -50,6 +50,16 @@ export default function Map() {
             .attr('stroke-width', 0.5)
             .style('cursor', (data) => (started && !finished && !answeredStates[data.properties?.name] ? 'pointer' : 'default'))
             .on('click', (_, data) => !answeredStates[data.properties?.name] && answerState(data.properties?.name))
+            .on('mouseover', function (_, data) {
+                if (started && !finished && !answeredStates[data.properties?.name]) {
+                    select(this).attr('fill', 'oklch(27.8% 0.033 256.848)') // Gray
+                }
+            })
+            .on('mouseout', function (_, data) {
+                if (started && !finished && !answeredStates[data.properties?.name]) {
+                    select(this).attr('fill', 'black')
+                }
+            })
     }, [geoJson, started, finished, answeredStates, answerState])
 
     return <svg className="size-full" ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} />
