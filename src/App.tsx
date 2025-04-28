@@ -1,6 +1,6 @@
+import ElapsedTime from './ElapsedTime'
 import Map from './Map'
 import { useGameStore } from './lib/store'
-import { formatTime } from './lib/utils'
 
 export default function App() {
     const { started, finished, current, answered, startGame, resetGame } = useGameStore()
@@ -17,8 +17,7 @@ export default function App() {
                                 Found: {answeredCount < 10 && <span className="opacity-0">0</span>}
                                 {Object.values(answered).filter((value) => value === 'correct').length}/50, Remaining:{' '}
                                 {50 - answeredCount < 10 && <span className="opacity-0">0</span>}
-                                {50 - answeredCount}, Time: {formatTime(100)}
-                                {finished && <span className="font-bold text-green-700">Game Over!</span>}
+                                {50 - answeredCount}, Time: <ElapsedTime />
                             </>
                         )}
                     </div>
