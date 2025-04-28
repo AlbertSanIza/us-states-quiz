@@ -49,7 +49,7 @@ export default function App() {
             </div>
             <div className="relative flex-1 overflow-hidden">
                 {started && !finished && currentState && (
-                    <div className="absolute w-full text-center text-3xl font-semibold tracking-tight">
+                    <div className="absolute w-full text-center text-2xl font-semibold tracking-tight">
                         Find: <span className="text-4xl underline">{currentState}</span>
                     </div>
                 )}
