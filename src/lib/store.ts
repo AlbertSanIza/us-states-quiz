@@ -1,7 +1,5 @@
 import { create } from 'zustand'
 
-type AnswerStatus = 'correct' | 'incorrect'
-
 const US_STATES = [
     'Alabama',
     'Alaska',
@@ -54,6 +52,8 @@ const US_STATES = [
     'Wisconsin',
     'Wyoming'
 ]
+
+type AnswerStatus = 'correct' | 'incorrect'
 
 function getRandomState(remaining: string[]) {
     return remaining[Math.floor(Math.random() * remaining.length)]
