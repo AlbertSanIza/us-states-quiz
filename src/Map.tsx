@@ -39,16 +39,16 @@ export default function Map() {
             .join('path')
             .attr('d', path)
             .attr('fill', (data) =>
-                    answered[data.properties?.name] === 'correct'
-                        ? 'oklch(84.1% 0.238 128.85)' // Green
-                        : answered[data.properties?.name] === 'incorrect'
+                answered[data.properties?.name] === 'correct'
+                    ? 'oklch(84.1% 0.238 128.85)' // Green
+                    : answered[data.properties?.name] === 'incorrect'
                       ? 'oklch(63.7% 0.237 25.331)' // Red
                       : 'black'
             )
             .attr('stroke', 'oklch(37% 0.013 285.805)')
             .attr('stroke-width', 1)
             .style('cursor', (data) => (started && !finished && !answered[data.properties?.name] ? 'pointer' : 'default'))
-            .on('click', (_, data) => !answered[data.properties?.name] && answer(data.properties?.name))
+            .on('click', (_, data) => started && !finished && !answered[data.properties?.name] && answer(data.properties?.name))
             .on('mouseover', function (_, data) {
                 if (started && !finished && !answered[data.properties?.name]) {
                     select(this).attr('fill', 'oklch(37% 0.013 285.805)')
