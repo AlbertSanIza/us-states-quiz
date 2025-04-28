@@ -31,13 +31,16 @@ export default function App() {
                 <div>
                     {!started ? (
                         <button
-                            className="flex h-10 items-center rounded-lg bg-black px-4 text-white hover:cursor-pointer hover:opacity-90"
+                            className="flex h-10 items-center rounded-lg bg-black px-4 font-light text-white hover:cursor-pointer hover:opacity-90"
                             onClick={startGame}
                         >
                             Start
                         </button>
                     ) : (
-                        <button className="flex h-10 items-center rounded-lg border-2 px-4 hover:cursor-pointer hover:opacity-90" onClick={resetGame}>
+                        <button
+                            className="flex h-10 items-center rounded-lg border-2 px-4 font-light hover:cursor-pointer hover:opacity-90"
+                            onClick={resetGame}
+                        >
                             Reset
                         </button>
                     )}
