@@ -44,8 +44,8 @@ export default function Map() {
             )
             .attr('stroke', 'white')
             .attr('stroke-width', 0.5)
-            .style('cursor', started && !finished ? 'pointer' : 'default')
-            .on('click', (_, data) => answerState(data.properties?.name))
+            .style('cursor', (data) => (started && !finished && !answeredStates[data.properties?.name] ? 'pointer' : 'default'))
+            .on('click', (_, data) => !answeredStates[data.properties?.name] && answerState(data.properties?.name))
     }, [geoJson, started, finished, answeredStates, answerState])
 
     return <svg className="size-full" ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} />
