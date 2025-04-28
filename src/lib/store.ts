@@ -76,10 +76,10 @@ export const useGameStore = create<{
     answered: {},
     elapsedTime: 0,
     startGame: () => {
-        set({ started: true, finished: false, current: getRandomState(US_STATES), answered: {} })
+        set({ started: true, finished: false, current: getRandomState(US_STATES), answered: {}, elapsedTime: 0 })
     },
     resetGame: () => {
-        set({ started: false, finished: false, current: null, answered: {} })
+        set({ started: false, finished: false, current: null, answered: {}, elapsedTime: 0 })
     },
     answer: (state: string) => {
         const { current, answered } = get()
