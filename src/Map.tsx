@@ -45,7 +45,7 @@ export default function Map() {
                       ? 'oklch(63.7% 0.237 25.331)' // Red
                       : 'black'
             )
-            .attr('stroke', 'oklch(58.8% 0.158 241.966)')
+            .attr('stroke', 'oklch(87.1% 0.006 286.286)')
             .attr('stroke-width', 1)
             .style('cursor', (data) => (started && !finished && !answered[data.properties?.name] ? 'pointer' : 'default'))
             .on('click', (_, data) => started && !finished && !answered[data.properties?.name] && answer(data.properties?.name))
