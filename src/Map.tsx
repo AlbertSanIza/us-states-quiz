@@ -51,7 +51,7 @@ export default function Map() {
             .on('click', (_, data) => started && !finished && !answered[data.properties?.name] && answer(data.properties?.name))
             .on('mouseover', function (_, data) {
                 if (started && !finished && !answered[data.properties?.name]) {
-                    select(this).attr('fill', 'oklch(82.8% 0.111 230.318)')
+                    select(this).attr('fill', 'oklch(29.3% 0.066 243.157)')
                 }
             })
             .on('mouseout', function (_, data) {
