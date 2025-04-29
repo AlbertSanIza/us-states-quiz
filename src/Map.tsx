@@ -45,13 +45,13 @@ export default function Map() {
                       ? 'oklch(63.7% 0.237 25.331)' // Red
                       : 'black'
             )
-            .attr('stroke', 'oklch(37% 0.013 285.805)')
+            .attr('stroke', 'oklch(58.8% 0.158 241.966)')
             .attr('stroke-width', 1)
             .style('cursor', (data) => (started && !finished && !answered[data.properties?.name] ? 'pointer' : 'default'))
             .on('click', (_, data) => started && !finished && !answered[data.properties?.name] && answer(data.properties?.name))
             .on('mouseover', function (_, data) {
                 if (started && !finished && !answered[data.properties?.name]) {
-                    select(this).attr('fill', 'oklch(37% 0.013 285.805)')
+                    select(this).attr('fill', 'oklch(82.8% 0.111 230.318)')
                 }
             })
             .on('mouseout', function (_, data) {
