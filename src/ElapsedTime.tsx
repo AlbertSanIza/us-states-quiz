@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+
 import { useGameStore } from './lib/store'
 import { formatTime } from './lib/utils'
 
